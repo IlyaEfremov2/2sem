@@ -1,12 +1,16 @@
 ﻿#include "hexagon.h"
 #include <cmath>
-#include <iomanip>
-#include <iostream>
-
+#include <stdexcept>
 using namespace std;
 
 Hexagon::Hexagon(const Point& center, double radius, const Point& pointOnCircle)
-    : center(center), radius(radius), pointOnCircle(pointOnCircle) {}
+    : center(center), radius(radius), pointOnCircle(pointOnCircle)
+{
+    if (radius <= 0) 
+    {
+        throw invalid_argument("Радиус должен быть положительным");
+    }
+}
 
 double Hexagon::getSideLength() const
 {
@@ -15,5 +19,5 @@ double Hexagon::getSideLength() const
 
 double Hexagon::getArea() const
 {
-    return (3 * sqrt(3) * radius * radius) / 2;
+    return (3 * sqrt(3) * radius * radius) / 2.0;
 }
