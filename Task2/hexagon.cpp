@@ -3,7 +3,7 @@
 #include <stdexcept>
 using namespace std;
 
-Hexagon::Hexagon(const Point& center, double radius, const Point& pointOnCircle)
+Hexagon::Hexagon(Point& center, double radius, Point& pointOnCircle)
     : center(center), radius(radius), pointOnCircle(pointOnCircle)
 {
     if (radius <= 0) 

@@ -5,35 +5,43 @@
 
 using namespace std;
 
-Hexagon inputHexagon();
+Point getPoint(string message);
+double getValue(string message);
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    Hexagon hexagon = inputHexagon();
+    Point center = getPoint("Введите координаты x и y центра окружности: ");
+    double radius = getValue("Введите радиус: ");
+    Point pointOnCircle = getPoint("Введите координаты x и y точки: ");
+    Hexagon hexagon(center, radius, pointOnCircle);
     cout << "Длина стороны шестиугольника: " << hexagon.getSideLength() << endl;
     cout << "Площадь шестиугольника: " << hexagon.getArea() << endl;
     return 0;
 }
 
-Hexagon inputHexagon()
+Point getPoint(string message)
 {
-    double x, y;
-
-    cout << "Введите координаты центра (x, y): ";
+    cout << message << endl;
+    double x = 0.0;
+    double y = 0.0;
     cin >> x >> y;
-    Point center = Point(x, y);
-    double radius;
-    cout << "Введите радиус описанной окружности: ";
-    cin >> radius;
-    if (radius <= 0)
+    if (cin.fail())
     {
-        throw invalid_argument("Радиус должен быть положительным");
+        throw invalid_argument("Введено некорректное значение");
     }
-    Point pointOnCircle;
-    cout << "Введите координаты точки на окружности (x y): ";
-    cin >> x >> y;
-    pointOnCircle = Point(x, y);
-    return Hexagon(center, radius, pointOnCircle);
+    return Point(x, y);
 }
+double getValue(string message)
+{
+    cout << message << endl;
+    double radius = 0.0;
+    cin >> radius;
+    if (cin.fail())
+    {
+        throw invalid_argument("Введено некорректное значение");
+    }
+    return radius;
+}
+
 

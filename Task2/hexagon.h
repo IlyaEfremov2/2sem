@@ -8,7 +8,7 @@ private:
     Point pointOnCircle;
 
 public:
-    Hexagon(const Point& center, double radius, const Point& pointOnCircle);
+    Hexagon(Point& center, double radius, Point& pointOnCircle);
     double getSideLength() const;
     double getArea() const;
 };
